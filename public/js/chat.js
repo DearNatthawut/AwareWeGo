@@ -2,28 +2,25 @@
     var chatRef = myFirebaseRef.child("chatroom");
 
      $('#myDropdown').on({
-            "shown.bs.dropdown": function() { this.closable = true; },
+            "shown.bs.dropdown": function() { this.closable = false; },
             "click":             function() { this.closable = true; },
             "hide.bs.dropdown":  function() { return this.closable; }
             });
-                       
-    
-    $('#btn-chat').click(function(){
+
+
+  $('#btn-chat').click(function(){
         if ($('#message').val() == ""){
             alert('Please Enter your message');
         }else if ($('#name').val() == ""){
             alert('Please Enter your name');
         }else{
-    
             chatRef.push({
                name: $("#name").val(),
                 message: $("#message").val()
                  });
                    $("#message").val("")
         }
-
     });
-
    chatRef.on("child_added", function(data){
            msgData = data.val();
               $(".chat").prepend( "<li>"+
@@ -37,4 +34,7 @@
               "</p>"+
               "</div>"+
               "</li>");
+
+
+
           });
