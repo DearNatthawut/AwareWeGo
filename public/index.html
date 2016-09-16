@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Aware We Go</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="css/stylish-portfolio.css" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+        <!-- FireBase -->
+        <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.0.6/firebase.js"></script>
+        <script src="js/firebaseConfig.js"></script>
+        <!-- Chat CSS-->
+        <link rel="stylesheet" href="./css/chat.css">
+        
+        
+        
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="">Aware We Go</a>
+                </div>
+                <div id="navbar" class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown open" id="myDropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="" aria-expanded="false">Chat <span class="caret"></span></a>
+                            <ul class="dropdown-menu" style="min-width: 400px;background-color:">
+                                <li>
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <span class="glyphicon glyphicon-comment"></span> Name:
+                                            <label><input id="name" type="text" class="form-control input-sm" placeholder="your name" value="Gust" /></label>
+                                            
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="chat">
+                                            </ul>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <div class="input-group">
+                                                <input id="message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-warning btn-sm" id="btn-chat">
+                                                    Send</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </li>
+                            </li>
+                            
+                            
+                        </ul>
+                        
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </nav>
+                
+                <!-- Header -->
+                <header id="top" class="header">
+                    <div class="text-vertical-center">
+                        <h1>Aware We Go</h1>
+                        <h3>Free Random tool</h3>
+                        <br>
+                        <a href="#restaurant" class="btn btn-dark btn-lg">Start !!!</a>
+                    </div>
+                    
+                    
+                </header>
+                
+                <!-- Portfolio -->
+                <section id="restaurant" class="portfolio">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1 text-center">
+                                <h2>Restaurant</h2>
+                                <hr class="small">
+                                <form id="resultRandom">
+                                    <div class="row" >
+                                        
+                                        <div style="margin: auto;text-align: left;size:20px">
+                                            
+                                            
+                                            <div class="col-md-6">
+                                                
+                                                <input type="checkbox" onClick="toggle(this)" /> Toggle All<br/>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <input id="restaurants" type="checkbox" name="restaurants[]" value="ลาบ ลู้ ส้า ดิบ เดือด โฉด">
+                                                <label for="restaurants">ลาบ ลู้ ส้า ดิบ เดือด โฉด</label>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <input id="restaurants" type="checkbox" name="restaurants[]" value="ข้าวมันไก่ น้องสาวขาขาวจัง">
+                                                <label for="restaurants">ข้าวมันไก่ น้องสาวขาขาวจัง</label>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <input id="restaurants" type="checkbox" name="restaurants[]" value="พรอมเมด้า ป้าทำไมแพงจัง">
+                                                <label for="restaurants">พรอมเมด้า ป้าทำไมแพงจัง</label>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <input id="restaurants" type="checkbox" name="restaurants[]" value="ป้าแสง พลังช้าง">
+                                                <label for="restaurants">ป้าแสง พลังช้าง</label>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <input id="restaurants" type="checkbox" name="restaurants[]" value="กระเพราเป็ด เสี่ยวเอ้อ">
+                                                <label for="restaurants">กระเพราเป็ด เสี่ยวเอ้อ</label>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <input id="restaurants" type="checkbox" name="restaurants[]" value="รถไฟ ซาลาเปา สามสหาย">
+                                                <label for="restaurants">รถไฟ ซาลาเปา สามสหาย</label>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <input id="restaurants" type="checkbox" name="restaurants[]" value="มาลี เริงระบำ">
+                                                <label for="restaurants">มาลี เริงระบำ</label>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <input id="restaurants" type="checkbox" name="restaurants[]" value="บุญถาวร ไหข้าอยู่ไหน">
+                                                <label for="restaurants">บุญถาวร ไหข้าอยู่ไหน</label>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <input id="restaurants" type="checkbox" name="restaurants[]" value="หนมจีนบ้านชิ ขาวจริงขาวจัง ลูกชิ้น นูนมาก">
+                                                <label for="restaurants">หนมจีนบ้านชิ ขาวจริงขาวจัง ลูกชิ้น นูนมาก</label>
+                                                
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <a  href="#result" onclick="getRest()" class="btn btn-dark" >Random</a>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.col-lg-10 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container -->
+                </section>
+                <!-- Call to Action -->
+                <aside class="call-to-action bg-primary" id="result">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h3 id="Ar">Result</h3>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <!-- Map -->
+                <section id="contact" class="map">
+                    <div class="panel panel-success" id="map" style="width:100%;height:500px"></div>
+                </section>
+                
+            </body>
+            <!-- jQuery -->
+            <script src="js/jquery.js"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="js/bootstrap.min.js"></script>
+            
+            <!-- Google map -->
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWIBVasmnPNguHlcgJnZ9sMkR9KjhG3o0"></script>
+            <!-- RandomJS  -->
+            <script src="js/randomAr.js"></script>
+            <!-- ChatJS-->
+            <script src="js/chat.js"></script>
+            <script type="text/javascript" >
+            
+            $('#myDropdown').on({
+            "shown.bs.dropdown": function() { this.closable = true; },
+            "click":             function() { this.closable = true; },
+            "hide.bs.dropdown":  function() { return this.closable; }
+            });
+                       
+            // Scrolls to the selected menu item on the page
+            $(function() {
+            $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+            $('html,body').animate({
+            scrollTop: target.offset().top
+            }, 1000);
+            return false;
+            }
+            }
+            });
+            });
+            //#to-top button appears after scrolling
+            var fixed = false;
+            $(document).scroll(function() {
+            if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+            fixed = true;
+            // $('#to-top').css({position:'fixed', display:'block'});
+            $('#to-top').show("slow", function() {
+            $('#to-top').css({
+            position: 'fixed',
+            display: 'block'
+            });
+            });
+            }
+            } else {
+            if (fixed) {
+            fixed = false;
+            $('#to-top').hide("slow", function() {
+            $('#to-top').css({
+            display: 'none'
+            });
+            });
+            }
+            }
+            });
+            
+            </script>
+            
+        </html>
