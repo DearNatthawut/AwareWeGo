@@ -6,15 +6,15 @@
             "click":             function() { this.closable = true; },
             "hide.bs.dropdown":  function() { return this.closable; }
             });
-                       
-    
+
+
     $('#btn-chat').click(function(){
         if ($('#message').val() == ""){
             alert('Please Enter your message');
         }else if ($('#name').val() == ""){
             alert('Please Enter your name');
         }else{
-    
+
             chatRef.push({
                name: $("#name").val(),
                 message: $("#message").val()

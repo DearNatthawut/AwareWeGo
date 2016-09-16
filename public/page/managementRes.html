@@ -7,34 +7,32 @@
     <title>Add Res</title>
   </head>
   <body>
-    
+
     <div class="container">
       <div class="row">
-        <div class="col-md-5">
+
           <div class="panel panel-primary">
-            <div class="panel-heading">
-              <span class="glyphicon glyphicon-comment"></span> Name:
-              <label><input id="name" type="text" class="form-control input-sm" placeholder="your name" value="Gust" /></label>
-              
-            </div>
+            <div class="panel-heading">Restaurant</div>
             <div class="panel-body">
-              <ul class="chat">
+              <ul class="RestaurantList">
               </ul>
             </div>
             <div class="panel-footer">
               <div class="input-group">
-                <input id="message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                <input id="name" type="text" class="form-control input-sm" placeholder="Restaurant name" />
+                <input id="Latitude" type="text" class="form-control input-sm" placeholder="Latitude" />
+                <input id="Longitude" type="text" class="form-control input-sm" placeholder="Longitude" />
                 <span class="input-group-btn">
-                  <button class="btn btn-warning btn-sm" id="btn-chat">
+                  <button class="btn btn-warning pull-right" id="btn-chat">
                   Send</button>
                 </span>
               </div>
             </div>
           </div>
-        </div>
+
       </div>
     </div>
-    
+
     <!-- FireBase -->
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
     <script src="../js/firebaseConfig.js"></script>
@@ -48,38 +46,39 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Chat CSS-->
     <link rel="stylesheet" href="../css/chat.css">
-    
+
     <script>
-    
+
     var myFirebaseRef = new Firebase("https://aware-we-go-1473782559511.firebaseio.com");
     var chatRef = myFirebaseRef.child("restaurant");
-    
+
     $('#btn-chat').click(function(){
        if ($('#name').val() == ""){
-            alert('Please Enter your name');
+            alert('Please Enter Restaurant name');
+        }else if ($("#Latitude").val() == "") {
+            alert('Please Enter Latitude');
+        }else if ($("#Longitude").val() == "") {
+            alert('Please Enter Longitude');
         }else{
-    
+
             chatRef.push({
                name: $("#name").val(),
+               latitude: $("#Latitude").val(),
+               longitude: $("#Longitude").val()
+               });
                      $("#name").val("")
         }
     });
 
    chatRef.on("child_added", function(data){
            msgData = data.val();
-              $(".chat").prepend( "<li>"+
-               "<div class='chat-body clearfix'>"+
+              $(".RestaurantList").prepend( "<li>"+
                "<div class='header'>"+
                "<strong class='primary-font'>"+msgData.name+"</strong>"+
-               "<small class='pull-right text-muted'>"+
-               "</div>"+
-               "<p>"+
-                 msgData.message+
-              "</p>"+
               "</div>"+
               "</li>");
           });
-    
+
     </script>
   </body>
 </html>
