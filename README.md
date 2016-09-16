@@ -1,1 +1,2 @@
-# AwareWeGo V.beta draft 
+# AwareWeGo V.beta draft  ex
+#realtime or ??
