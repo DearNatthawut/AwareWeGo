@@ -49,6 +49,7 @@
                                             </ul>
                                         </div>
                                         <div class="panel-footer">
+                                          <form>
                                             <div class="input-group">
                                                 <input id="message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                                                 <span class="input-group-btn">
@@ -56,6 +57,7 @@
                                                     Send</button>
                                                 </span>
                                             </div>
+                                          </form>
                                         </div>
                                     </div>
                                 </li>
@@ -166,7 +168,7 @@
             $("#chatBox").toggle(100);
             });
             });
-           
+
             // Scrolls to the selected menu item on the page
             $(function() {
             $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
