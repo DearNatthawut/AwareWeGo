@@ -9,6 +9,7 @@
 
 
   $('#btn-chat').click(function(){
+
         if ($('#message').val() == ""){
             alert('Please Enter your message');
         }else if ($('#name').val() == ""){
@@ -21,6 +22,10 @@
                    $("#message").val("")
         }
     });
+
+
+
+
    chatRef.on("child_added", function(data){
            msgData = data.val();
               $(".chat").prepend( "<li>"+
