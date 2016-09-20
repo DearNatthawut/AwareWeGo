@@ -4,29 +4,41 @@
     <meta charset="utf-8">
     <meta name="description" content="tutorial for use firebase">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Res</title>
+    <title>Restaurant Manament</title>
   </head>
-  <body>
+  <body >
 
     <div class="container">
      <h2>Restaurant</h2>
+     <form class="form-inline" action="#">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+      <label for="latitude">Latitude:</label>
+      <input type="text" class="form-control" id="latitude" placeholder="Enter Latitude">
+    </div>
+    <div class="form-group">
+      <label for="Longitude">longitude:</label>
+      <input type="text" class="form-control" id="longitude" placeholder="Enter Longitude">
+    </div>
 
-     <table class="table table-condensed">
+    <button type="submit" class="btn btn-default" id="btn-res">Add</button>
+   </form>
+
+<br>
+     <table class="table table-bordered" >
        <thead>
-         <tr>
+         <tr class="info">
            <th>Name</th>
            <th>Latitude</th>
            <th>Longitude</th>
-          <th></th>
+          <th>Manament</th>
          </tr>
        </thead>
        <tbody id="listBody">
-         <tr>
-           <td>John</td>
-           <td>Doe</td>
-           <td>john@example.com</td>
-           <td>john@example.com</td>
-         </tr>
+
        </tbody>
      </table>
    </div>
@@ -47,43 +59,118 @@
 
     <script>
 
-    var myFirebaseRef = new Firebase("https://aware-we-go-1473782559511.firebaseio.com");
-    var chatRef = myFirebaseRef.child("restaurant");
+    function removeRes(resData){
+      if (confirm('Confirm Remove this Restaurant!!!')) {
+        var removeRestaurant = new Firebase("https://aware-we-go-1473782559511.firebaseio.com/restaurant");
+        var removeData = removeRestaurant.child(resData);
+        var re = removeData.remove();
+      }
+    }
 
-    $('#btn-chat').click(function(){
+
+
+
+    var myFirebaseRef = new Firebase("https://aware-we-go-1473782559511.firebaseio.com");
+    var resRef = myFirebaseRef.child("restaurant");
+
+
+
+    $('#btn-res').click(function(){
        if ($('#name').val() == ""){
             alert('Please Enter restaurant name');
         }else if ($('#latitude').val() == "" || $('#longitude').val() == "") {
               alert('Please Enter latitude and longitude');
         }else {
 
-            chatRef.push({
+            resRef.push({
                name: $("#name").val(),
                latitude: $("#latitude").val(),
-               longitude: $("#longitude").val(),
-
-                     $("#name").val(""),
-                      $("#latitude").val(""),
-                       $("#longitude").val("")
-        }
+               longitude: $("#longitude").val()
     });
 
-   chatRef.on("child_added", function(data){
-           msgData = data.val();
+     $("#name").val("");
+     $("#latitude").val("");
+     $("#longitude").val("");
+  }
+});
 
-             <td>John</td>
-             <td>Doe</td>
-             <td>john@example.com</td>
-             <td>john@example.com</td>
-           </tr>
-              $(".chat").prepend( "<tr>"+
-              "<td>" + msgData.name + "</td>"+
-                "<td>" + msgData.latitude + "</td>"+
-                "<td>" + msgData.longitude + "</td>"+
-                  "<td></td>"+
-                  "</tr>"
+
+   resRef.on("child_added", function(data){
+          key  = data.U.path.n[1];
+           resData = data.val();
+              $("#listBody").prepend( "<tr class='info'>"+
+                  "<td>"+
+                  "<label>" + resData.name + "</label>"+
+                  "<input type='text' id='edit-name' class='edit-input' value='"+ resData.name + "' />"+
+                  "</td>"+
+                  "<td>"+
+                  "<label>" + resData.latitude + "</label>"+
+                  "<input type='text' id='edit-latitude' class='edit-input' value='"+ resData.latitude + "' />"+
+                       "</td>"+
+                  "<td>"+
+                  "<label>" + resData.longitude + "</label>"+
+                  "<input type='text' id='edit-longitude' class='edit-input' value='"+ resData.longitude + "' />"+
+                  "</td>"+
+                  "<td>"+
+                  "<button class='edit'>Edit</button>"+
+                  "<button class='save'>Save</button>"+
+                  "<button class='cancel'>Cancel</button>"+
+                  "<button onClick='removeRes(key)'>Remove</button>"+
+                  "</td>"+
+                  "</tr>");
           });
 
+          $(document).on(
+            'click', '.edit', function(e) {
+            var dad = $(this).parent().parent();
+            dad.find('label').hide();
+            dad.find('.edit-input').show();
+            dad.find('.edit').hide();
+            dad.find('.save').show();
+            dad.find('.cancel').show();
+          })
+
+          $(document).on(
+          'click', '.cancel', function(e) {
+          var dad = $(this).parent().parent();
+          dad.find('label').show();
+          dad.find('.edit-input').hide();
+          dad.find('.edit').show();
+          dad.find('.save').hide();
+            dad.find('.cancel').hide();
+        })
+
+        $(document).on(
+        'click', '.save', function(e) {
+
+          resRef.update({
+             name: $("#edit-name").val(),
+             latitude: $("#edit-latitude").val(),
+             longitude: $("#edit-longitude").val()
+          })
+
+        var dad = $(this).parent().parent();
+        dad.find('label').show();
+        dad.find('.edit-input').hide();
+        dad.find('.edit').show();
+        dad.find('.save').hide();
+        dad.find('.cancel').hide();
+      })
+
+
+
     </script>
+
+    <style>
+    .edit-input {
+        display:none;
+    }
+    .save {
+        display:none;
+    }
+    .cancel {
+        display:none;
+    }
+    </style>
   </body>
 </html>
